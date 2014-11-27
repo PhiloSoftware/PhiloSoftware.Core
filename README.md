@@ -1,4 +1,4 @@
 PhiloSoftware.Core
 ==================
 
-Collection of reusable 
+Collection of reusable objects implementing the Repository pattern and Unit Of Work
