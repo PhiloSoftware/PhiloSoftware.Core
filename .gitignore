@@ -1,3 +1,7 @@
 *.v12.suo
 PhiloSoftware.Core.Infrastructure/bin/
 PhiloSoftware.Core.Infrastructure/obj/
+PhiloSoftware.Core.Infrastructure.Test/bin/
+PhiloSoftware.Core.Infrastructure.Test/obj/
+/packages/
+!packages/repositories.config

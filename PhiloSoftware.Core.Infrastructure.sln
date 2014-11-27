@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhiloSoftware.Core.Infrastructure", "PhiloSoftware.Core.Infrastructure\PhiloSoftware.Core.Infrastructure.csproj", "{1E0D7767-6C79-437E-B541-0A58F29E8899}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhiloSoftware.Core.Infrastructure.Test", "PhiloSoftware.Core.Infrastructure.Test\PhiloSoftware.Core.Infrastructure.Test.csproj", "{75EE84CD-7DAB-4373-8183-A28541E3829D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1E0D7767-6C79-437E-B541-0A58F29E8899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E0D7767-6C79-437E-B541-0A58F29E8899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E0D7767-6C79-437E-B541-0A58F29E8899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75EE84CD-7DAB-4373-8183-A28541E3829D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75EE84CD-7DAB-4373-8183-A28541E3829D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75EE84CD-7DAB-4373-8183-A28541E3829D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75EE84CD-7DAB-4373-8183-A28541E3829D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

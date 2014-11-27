@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataSource.cs" />
+    <Compile Include="Data\Entity.cs" />
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\InMemoryDataSource.cs" />
     <Compile Include="Data\InMemoryUnitOfWork.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Security\ICryptoProvider.cs" />
     <Compile Include="Security\IHashedValue.cs" />
     <Compile Include="Security\Exception\NotAHashedValueStringException.cs" />
+    <Compile Include="Services\SequentialGuidService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
