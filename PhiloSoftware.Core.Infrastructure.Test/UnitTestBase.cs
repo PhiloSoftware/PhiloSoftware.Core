@@ -35,7 +35,6 @@ namespace PhiloSoftware.Core.Infrastructure.Test
         public void CleanUp()
         {
             // TODO remove all bindings to ensure it is a fresh run
-
             _kernal = null;
         }
     }

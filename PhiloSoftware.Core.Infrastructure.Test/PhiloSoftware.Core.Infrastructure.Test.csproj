@@ -67,9 +67,6 @@
     <Compile Include="Data\RepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PhiloSoftware.Core.Infrastructure\PhiloSoftware.Core.Infrastructure.csproj">
       <Project>{1e0d7767-6c79-437e-b541-0a58f29e8899}</Project>
       <Name>PhiloSoftware.Core.Infrastructure</Name>
