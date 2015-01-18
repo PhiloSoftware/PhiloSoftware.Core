@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DataSource.cs" />
+    <Compile Include="Data\Exception\IEntityIDNotSetException.cs" />
+    <Compile Include="Data\IDataSource.cs" />
     <Compile Include="Data\Entity.cs" />
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\InMemoryDataSource.cs" />
     <Compile Include="Data\InMemoryUnitOfWork.cs" />
+    <Compile Include="Data\IProvideAConnectionString.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\ISession.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
@@ -58,9 +61,12 @@
     <Compile Include="Security\ICryptoProvider.cs" />
     <Compile Include="Security\IHashedValue.cs" />
     <Compile Include="Security\Exception\NotAHashedValueStringException.cs" />
+    <Compile Include="Services\IProvideAppSettings.cs" />
     <Compile Include="Services\SequentialGuidService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
