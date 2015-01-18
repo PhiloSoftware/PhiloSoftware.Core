@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhiloSoftware.Core.Infrastructure", "PhiloSoftware.Core.Infrastructure\PhiloSoftware.Core.Infrastructure.csproj", "{1E0D7767-6C79-437E-B541-0A58F29E8899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhiloSoftware.Core.Infrastructure", "Project\PhiloSoftware.Core.Infrastructure\PhiloSoftware.Core.Infrastructure.csproj", "{1E0D7767-6C79-437E-B541-0A58F29E8899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhiloSoftware.Core.Infrastructure.Test", "PhiloSoftware.Core.Infrastructure.Test\PhiloSoftware.Core.Infrastructure.Test.csproj", "{75EE84CD-7DAB-4373-8183-A28541E3829D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhiloSoftware.Core.Infrastructure.Test", "Project\Test\PhiloSoftware.Core.Infrastructure.Test\PhiloSoftware.Core.Infrastructure.Test.csproj", "{75EE84CD-7DAB-4373-8183-A28541E3829D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
