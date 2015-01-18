@@ -22,7 +22,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.Exception
             return new IEntityIDNotSetException(message);
         }
 
-        internal static System.Exception ExceptionForDeleteFail<T>()
+        public static System.Exception ExceptionForDeleteFail<T>()
         {
             var message = string.Format("Cannot delete entity {0} as the ID has not been set.", typeof(T));
             return new IEntityIDNotSetException(message);
