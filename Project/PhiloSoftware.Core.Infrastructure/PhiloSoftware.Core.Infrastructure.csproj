@@ -56,6 +56,8 @@
     <Compile Include="Data\Repository.cs" />
     <Compile Include="Data\SqlDataSource.cs" />
     <Compile Include="Data\SqlUnitOfWork.cs" />
+    <Compile Include="IOC\IDependencyResolver.cs" />
+    <Compile Include="IOC\IDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\HashedValue.cs" />
     <Compile Include="Security\ICryptoProvider.cs" />

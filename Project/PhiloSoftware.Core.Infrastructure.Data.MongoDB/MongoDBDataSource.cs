@@ -18,7 +18,6 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
         private MongoDatabase _database;
         private MongoCollection<T> _collection;
 
-
         public MongoDBDataSource(IProvideAConnectionString connectionProvider)
         {
             _mongoClient = new MongoClient(connectionProvider.GetConnectionString());
