@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace PhiloSoftware.Core.Infrastructure {
 
-    public interface ISequentialGuidGeneratorService
+    public interface IGenerateSequentialGuids
     {
         EnumSequentialGuidType GuidType { get; }
 
@@ -40,7 +40,7 @@ namespace PhiloSoftware.Core.Infrastructure {
         SequentialAtEnd
     }
 
-    public class SequentialGuidGenerator : ISequentialGuidGeneratorService
+    public class SequentialGuidGenerator : IGenerateSequentialGuids
     {
         private readonly RNGCryptoServiceProvider _rng = new RNGCryptoServiceProvider();
 

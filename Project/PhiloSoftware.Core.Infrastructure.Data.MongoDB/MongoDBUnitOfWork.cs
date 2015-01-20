@@ -9,9 +9,9 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
     public class MongoDBUnitOfWork : IUnitOfWork
     {
         private IProvideAConnectionString _connectionStringProvider;
-        private ISequentialGuidGeneratorService _sequentialGuidGenerator;
+        private IGenerateSequentialGuids _sequentialGuidGenerator;
 
-        public MongoDBUnitOfWork(IProvideAConnectionString connectionStringProvider, ISequentialGuidGeneratorService sequentialGuidGenerator)
+        public MongoDBUnitOfWork(IProvideAConnectionString connectionStringProvider, IGenerateSequentialGuids sequentialGuidGenerator)
         {
             _connectionStringProvider = connectionStringProvider;
             _sequentialGuidGenerator = sequentialGuidGenerator;

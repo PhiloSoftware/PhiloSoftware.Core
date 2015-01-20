@@ -9,7 +9,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data
     {
         Guid ID { get; }
 
-        DateTimeOffset CreatedDateUtc { get; set; }
+        DateTimeOffset CreatedDateUtc { get; }
 
         DateTimeOffset UpdatedDateUtc { get; set; }
     }

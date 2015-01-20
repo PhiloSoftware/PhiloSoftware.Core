@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PhiloSoftware.Core.Infrastructure.Data
 {
-    public class Repository<T> : IRepository<T> where T : IEntity
+    public class Repository<T> : IRepository<T> where T : Entity
     {
         IUnitOfWork _unitOfWork;
         IDataSource<T> _dataSource;

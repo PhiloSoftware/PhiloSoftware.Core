@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 
 namespace PhiloSoftware.Core.Infrastructure.Data
 {
-    public class Entity : IEntity
+    public abstract class Entity : IEntity
     {
-        public Entity(ISequentialGuidGeneratorService sequentialGuidService)
+        [Obsolete("Do not use, this is for ORM's and DOD's")]
+        public Entity() { }
+
+        public Entity(IGenerateSequentialGuids sequentialGuidService)
         {
             this.ID = sequentialGuidService.NewSequentialGuid();
+            this.CreatedDateUtc = DateTimeOffset.UtcNow;
+            this.UpdatedDateUtc = DateTimeOffset.UtcNow;
         }
 
-        public Guid ID { get; private set; }
+        public virtual Guid ID { get; private set; }
 
-        public DateTimeOffset CreatedDateUtc { get; set; }
+        public virtual DateTimeOffset CreatedDateUtc { get; private set; }
 
-        public DateTimeOffset UpdatedDateUtc { get; set; }
+        public virtual DateTimeOffset UpdatedDateUtc { get; set; }
 
         public override bool Equals(object obj)
         {
