@@ -9,6 +9,7 @@ using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
 using MongoDB.Driver.Linq;
 using PhiloSoftware.Core.Infrastructure.Data.Exception;
+using PhiloSoftware.Core.Infrastructure.Definitions;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 {

@@ -45,17 +45,19 @@
   <ItemGroup>
     <Compile Include="Data\Exception\IEntityIDNotSetException.cs" />
     <Compile Include="Data\IDataSource.cs" />
-    <Compile Include="Data\Entity.cs" />
-    <Compile Include="Data\IEntity.cs" />
-    <Compile Include="Data\InMemoryDataSource.cs" />
-    <Compile Include="Data\InMemoryUnitOfWork.cs" />
+    <Compile Include="Data\InMemory\InMemoryDataSource.cs" />
+    <Compile Include="Data\InMemory\InMemoryUnitOfWork.cs" />
     <Compile Include="Data\IProvideAConnectionString.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\ISession.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
-    <Compile Include="Data\Repository.cs" />
-    <Compile Include="Data\SqlDataSource.cs" />
-    <Compile Include="Data\SqlUnitOfWork.cs" />
+    <Compile Include="Data\Repository\Repository.cs" />
+    <Compile Include="Data\SQL\SqlDataSource.cs" />
+    <Compile Include="Data\SQL\SqlUnitOfWork.cs" />
+    <Compile Include="Definitions\IAmAPerson.cs" />
+    <Compile Include="Implementation\Entity.cs" />
+    <Compile Include="Definitions\IEntity.cs" />
+    <Compile Include="Implementation\Person.cs" />
     <Compile Include="IOC\IDependencyResolver.cs" />
     <Compile Include="IOC\IDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
