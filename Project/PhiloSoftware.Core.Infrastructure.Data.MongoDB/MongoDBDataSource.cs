@@ -1,29 +1,23 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Bson;
+using System.Linq.Expressions;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using MongoDB.Driver.GridFS;
 using MongoDB.Driver.Linq;
 using PhiloSoftware.Core.Infrastructure.Data.Exception;
 using PhiloSoftware.Core.Infrastructure.Definitions;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 {
-    public class MongoDBDataSource<T> : IDataSource<T> where T : IEntity
+    public class MongoDbDataSource<T> : IDataSource<T> where T : IEntity
     {
-        private MongoClient _mongoClient;
-        private MongoDatabase _database;
-        private MongoCollection<T> _collection;
+        private readonly MongoCollection<T> _collection;
 
-        public MongoDBDataSource(IProvideAConnectionString connectionProvider)
+        public MongoDbDataSource(MongoCollection<T> collection)
         {
-            _mongoClient = new MongoClient(connectionProvider.GetConnectionString());
-            _database = _mongoClient.GetServer().GetDatabase(connectionProvider.GetDataBaseName());
-            _collection = _database.GetCollection<T>(typeof(T).Name);
+            _collection = collection;
         }
 
         public T GetByID(Guid id)
@@ -67,7 +61,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
             return _collection.AsQueryable<T>().GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
@@ -77,7 +71,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
             get { return typeof(T); }
         }
 
-        public System.Linq.Expressions.Expression Expression
+        public Expression Expression
         {
             get
             {

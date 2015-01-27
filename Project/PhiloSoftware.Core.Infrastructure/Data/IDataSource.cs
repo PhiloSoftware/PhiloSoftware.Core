@@ -1,8 +1,6 @@
 ﻿using PhiloSoftware.Core.Infrastructure.Definitions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PhiloSoftware.Core.Infrastructure.Data
 {

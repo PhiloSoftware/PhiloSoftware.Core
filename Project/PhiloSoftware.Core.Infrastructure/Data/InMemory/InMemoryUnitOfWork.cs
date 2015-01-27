@@ -1,17 +1,12 @@
 ﻿using PhiloSoftware.Core.Infrastructure.Definitions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.InMemory
 {
     /// <summary>
-    /// Unit of work for an in memory 
+    /// Unit of work for an in memory unit of work
     /// </summary>
     public class InMemoryUnitOfWork : IUnitOfWork
     {
-
         public IDataSource<T> GetDataSource<T>() where T : IEntity
         {
             return new InMemoryDataSource<T>();
@@ -45,11 +40,6 @@ namespace PhiloSoftware.Core.Infrastructure.Data.InMemory
         public void RollBack()
         {
 
-        }
-
-        public Guid GetUniqueID()
-        {
-            return Guid.NewGuid();
         }
     }
 }

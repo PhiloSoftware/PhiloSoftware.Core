@@ -7,6 +7,5 @@ namespace PhiloSoftware.Core.Infrastructure.Data
     {
         IUnitOfWork UnitOfWork { get; }
         T GetByIDOrDefault(Guid id);
-        Guid GetNewID();
     }
 }

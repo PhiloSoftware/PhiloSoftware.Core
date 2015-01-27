@@ -1,25 +1,24 @@
 ﻿using PhiloSoftware.Core.Infrastructure.Implementation;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using PhiloSoftware.Core.Infrastructure.Implementation;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        IUnitOfWork _unitOfWork;
-        IDataSource<T> _dataSource;
+        readonly IDataSource<T> _dataSource;
 
         public Repository(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
-            _dataSource = _unitOfWork.GetDataSource<T>();
+            UnitOfWork = unitOfWork;
+            _dataSource = UnitOfWork.GetDataSource<T>();
         }
 
-        public IUnitOfWork UnitOfWork
-        {
-            get { return _unitOfWork; }
-        }
+        public IUnitOfWork UnitOfWork { get; private set; }
 
         public T GetByIDOrDefault(Guid id)
         {
@@ -56,7 +55,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.Repository
             return _dataSource.GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return _dataSource.GetEnumerator();
         }
@@ -66,7 +65,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.Repository
             get { return _dataSource.AsQueryable().ElementType; }
         }
 
-        public System.Linq.Expressions.Expression Expression
+        public Expression Expression
         {
             get { return _dataSource.AsQueryable().Expression; }
         }
@@ -74,11 +73,6 @@ namespace PhiloSoftware.Core.Infrastructure.Data.Repository
         public IQueryProvider Provider
         {
             get { return _dataSource.AsQueryable().Provider; }
-        }
-
-        public Guid GetNewID()
-        {
-            return _unitOfWork.GetUniqueID();
         }
     }
 }

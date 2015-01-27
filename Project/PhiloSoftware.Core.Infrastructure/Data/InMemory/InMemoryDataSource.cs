@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PhiloSoftware.Core.Infrastructure.IOC;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.InMemory
 {

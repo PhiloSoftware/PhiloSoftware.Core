@@ -1,26 +1,25 @@
 ﻿using PhiloSoftware.Core.Infrastructure.Definitions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MongoDB.Driver;
+using PhiloSoftware.Core.Infrastructure.Definitions;
+using PhiloSoftware.Core.Infrastructure.IOC;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 {
-    public class MongoDBUnitOfWork : IUnitOfWork
+    public class MongoDbUnitOfWork : IUnitOfWork
     {
-        private IProvideAConnectionString _connectionStringProvider;
-        private IGenerateSequentialGuids _sequentialGuidGenerator;
+        private readonly MongoDatabase _database;
 
-        public MongoDBUnitOfWork(IProvideAConnectionString connectionStringProvider, IGenerateSequentialGuids sequentialGuidGenerator)
+        public MongoDbUnitOfWork(IProvideAConnectionString connectionStringProvider)
         {
-            _connectionStringProvider = connectionStringProvider;
-            _sequentialGuidGenerator = sequentialGuidGenerator;
+            var mongoClient = new MongoClient(connectionStringProvider.GetConnectionString());
+            _database = mongoClient.GetServer().GetDatabase(connectionStringProvider.GetDataBaseName());
+
         }
 
         public IDataSource<T> GetDataSource<T>() where T : IEntity
         {
-            return new MongoDBDataSource<T>(_connectionStringProvider);
+            return new MongoDbDataSource<T>(_database.GetCollection<T>(typeof(T).Name));
         }
 
         public void Commit()
@@ -31,11 +30,6 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
         public void RollBack()
         {
             // MongoDB is not transactional at this stage
-        }
-
-        public Guid GetUniqueID()
-        {
-            return _sequentialGuidGenerator.NewSequentialGuid();
         }
     }
 }
