@@ -1,8 +1,5 @@
-﻿using PhiloSoftware.Core.Infrastructure.Definitions;
-using System;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using PhiloSoftware.Core.Infrastructure.Definitions;
-using PhiloSoftware.Core.Infrastructure.IOC;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 {
@@ -14,7 +11,6 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
         {
             var mongoClient = new MongoClient(connectionStringProvider.GetConnectionString());
             _database = mongoClient.GetServer().GetDatabase(connectionStringProvider.GetDataBaseName());
-
         }
 
         public IDataSource<T> GetDataSource<T>() where T : IEntity

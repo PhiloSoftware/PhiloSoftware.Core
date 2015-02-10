@@ -1,10 +1,6 @@
-﻿using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Conventions;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MongoDB.Bson.Serialization.Conventions;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 {

@@ -66,6 +66,7 @@
     <Compile Include="Security\IHashedValue.cs" />
     <Compile Include="Security\Exception\NotAHashedValueStringException.cs" />
     <Compile Include="Services\IProvideAppSettings.cs" />
+    <Compile Include="Services\Logging\ILogger.cs" />
     <Compile Include="Services\SequentialGuidService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
