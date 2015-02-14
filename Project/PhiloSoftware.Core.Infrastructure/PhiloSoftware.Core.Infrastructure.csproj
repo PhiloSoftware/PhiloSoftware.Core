@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Exception\IEntityIDNotSetException.cs" />
+    <Compile Include="Data\Factory\EntityFactory.cs" />
     <Compile Include="Data\IDataSource.cs" />
     <Compile Include="Data\InMemory\InMemoryDataSource.cs" />
     <Compile Include="Data\InMemory\InMemoryUnitOfWork.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Data\SQL\SqlDataSource.cs" />
     <Compile Include="Data\SQL\SqlUnitOfWork.cs" />
     <Compile Include="Definitions\IAmAPerson.cs" />
+    <Compile Include="Definitions\IHaveUsernameAndPassword.cs" />
     <Compile Include="Implementation\Entity.cs" />
     <Compile Include="Definitions\IEntity.cs" />
     <Compile Include="Implementation\Person.cs" />

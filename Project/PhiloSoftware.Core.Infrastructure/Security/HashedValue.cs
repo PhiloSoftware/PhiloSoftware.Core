@@ -46,22 +46,7 @@ namespace PhiloSoftware.Core.Infrastructure.Security
         private int _complexityThrottle;
         private bool _inited;
         private byte[] _saltBytes;
-        private ICryptoProvider _saltProvider;
-
-        /// <summary>
-        ///     Private constructor to create an object from an existing hash
-        /// </summary>
-        /// <param name="oldHash">A hash string to build this object from.</param>
-        private HashedValue(string oldHash, ICryptoProvider saltProvider)
-        {
-            HashString = oldHash;
-            _saltProvider = saltProvider;
-
-            if (string.IsNullOrWhiteSpace(HashString))
-            {
-                throw new Exception.NotAHashedValueStringException("Cannot create an existing hash string that is null or empty.");
-            }
-        }
+        private readonly ICryptoProvider _saltProvider;
 
         /// <summary>
         ///     Create a hashed representation of the plain text.
@@ -72,7 +57,8 @@ namespace PhiloSoftware.Core.Infrastructure.Security
         ///     Offers the ability to tune the algorithm in order to increase the complexity. 1 being
         ///     the lowest value and 100 being very large.
         /// </param>
-        public HashedValue(string plainText, SupportedHashAlgorithm supportedHashAlgorithm, int complexityThrottle, ICryptoProvider saltProvider)
+        /// <param name="saltProvider">Provider of the salt used for creating the hash.</param>
+        private HashedValue(string plainText, SupportedHashAlgorithm supportedHashAlgorithm, int complexityThrottle, ICryptoProvider saltProvider)
         {
             _algorithm = supportedHashAlgorithm;
             _complexityThrottle = complexityThrottle;
@@ -89,16 +75,11 @@ namespace PhiloSoftware.Core.Infrastructure.Security
         /// </summary>
         /// <param name="plainText">The text to hash</param>
         /// <param name="oldHashedValue">A hashed value in which to re-use the salt from.</param>
-        /// <param name="supportedHashAlgorithm">If supplied the algorithm to hash the plain text with.</param>
-        /// <param name="complexityThrottle">
-        ///     Offers the ability to tune the algorithm in order to increase the complexity. 1 being
-        ///     the lowest value and 100 being very large.
-        /// </param>
-        private HashedValue(string plainText, HashedValue oldHashedValue, ICryptoProvider saltProvider)
+        /// <param name="saltProvider">Provider of the salt used for creating the hash.</param>
+        private HashedValue(string plainText, HashedValue oldHashedValue)
         {
             _algorithm = oldHashedValue.Algorithm;
             _complexityThrottle = oldHashedValue.ComplexityThrottle;
-            _saltProvider = saltProvider;
             ComputeHashWorker(plainText, _algorithm, _complexityThrottle, oldHashedValue.SaltBytes);
         }
 
@@ -143,7 +124,7 @@ namespace PhiloSoftware.Core.Infrastructure.Security
 
         public bool Equals(string plainText)
         {
-            return Equals(new HashedValue(plainText, this, _saltProvider));
+            return Equals(new HashedValue(plainText, this));
         }
 
         public override int GetHashCode()
@@ -187,7 +168,7 @@ namespace PhiloSoftware.Core.Infrastructure.Security
                         return alreadyCalcd.HashString == ph.HashString;
                     }
 
-                    var calc = new HashedValue(plaintext, ph, saltProvider);
+                    var calc = new HashedValue(plaintext, ph);
                     hashedValues.Add(calc);
 
                     return calc.HashString == ph.HashString;
@@ -237,9 +218,9 @@ namespace PhiloSoftware.Core.Infrastructure.Security
                     break;
             }
 
-            int hashSizeInBytes = hashSizeInBits / 8;
-            int iterationCountSizeInBytes = hasIterationsCount ? 4 : 0;
-            int algoMarkerSizeInBytes = _algorithm != SupportedHashAlgorithm.MD5 ? 6 : 0;
+            var hashSizeInBytes = hashSizeInBits / 8;
+            var iterationCountSizeInBytes = hasIterationsCount ? 4 : 0;
+            var algoMarkerSizeInBytes = _algorithm != SupportedHashAlgorithm.MD5 ? 6 : 0;
 
             if (hashWithSaltBytes.Length < (hashSizeInBytes + iterationCountSizeInBytes))
                 throw new FormatException("Hash value should have salt but doesnt.");
@@ -262,7 +243,8 @@ namespace PhiloSoftware.Core.Infrastructure.Security
         private void ComputeHashWorker(string plainText, SupportedHashAlgorithm algorithm, int complexityThrottle = 1,
             byte[] saltBytes = null)
         {
-            saltBytes = _saltProvider.GetNonZeroBytes(SALT_BYTE_LENGTH);
+            if (saltBytes == null)
+                saltBytes = _saltProvider.GetNonZeroBytes(SALT_BYTE_LENGTH);
 
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
             var algoBytes = Encoding.UTF8.GetBytes(GetAlgoIdentifier(algorithm));
@@ -316,7 +298,7 @@ namespace PhiloSoftware.Core.Infrastructure.Security
         private static byte[] CryptoHashAlgorithmComputeBytes(IEnumerable<byte> plainTextBytes,
             IEnumerable<byte> saltBytes, HashAlgorithm hashAlgo)
         {
-            IEnumerable<byte> plainTextWithSaltBytes = plainTextBytes.Concat(saltBytes);
+            var plainTextWithSaltBytes = plainTextBytes.Concat(saltBytes);
 
             return hashAlgo.ComputeHash(plainTextWithSaltBytes.ToArray());
         }
@@ -325,10 +307,10 @@ namespace PhiloSoftware.Core.Infrastructure.Security
         {
             var hashBytes = Convert.FromBase64String(hash);
 
-            int algoIndex = hashBytes.Length - 6;
+            var algoIndex = hashBytes.Length - 6;
             var bytes = new byte[6];
 
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
                 bytes[i] = hashBytes[algoIndex + i];
             }
@@ -357,6 +339,21 @@ namespace PhiloSoftware.Core.Infrastructure.Security
             }
 
             throw new Exception.NotAHashedValueStringException("The hash string is not a valid format.");
+        }
+
+        public class HashedValueFactory
+        {
+            private readonly ICryptoProvider _cryptoProvider;
+
+            public HashedValueFactory(ICryptoProvider cryptoProvider)
+            {
+                _cryptoProvider = cryptoProvider;
+            }
+
+            public IHashedValue CreateHash(string text, SupportedHashAlgorithm algorithm, int hashComplexity)
+            {
+                return new HashedValue(text, algorithm, hashComplexity, _cryptoProvider);
+            }
         }
     }
 }

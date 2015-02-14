@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PhiloSoftware.Core.Infrastructure.Security
+﻿namespace PhiloSoftware.Core.Infrastructure.Security
 {
     /// <summary>
     /// Class to hash a string and manage its representation as a hash.

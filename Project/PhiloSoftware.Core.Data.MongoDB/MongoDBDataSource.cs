@@ -39,6 +39,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
             if (entity.ID == Guid.Empty)
                 throw IEntityIDNotSetException.ExceptionForUpdateFail<T>();
 
+            entity.UpdatedDateUtc = DateTimeOffset.UtcNow;
             _collection.Save<T>(entity);
         }
 
