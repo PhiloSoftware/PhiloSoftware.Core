@@ -5,7 +5,7 @@ namespace PhiloSoftware.Core.Infrastructure.Definitions
 {
     public interface IHaveUsernameAndPassword
     {
-        string Username { get; }
+        string UserName { get; }
         IHashedValue Password { get; }
         DateTimeOffset LastLoginDate { get; }
 

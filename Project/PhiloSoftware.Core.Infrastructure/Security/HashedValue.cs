@@ -83,6 +83,11 @@ namespace PhiloSoftware.Core.Infrastructure.Security
             ComputeHashWorker(plainText, _algorithm, _complexityThrottle, oldHashedValue.SaltBytes);
         }
 
+        private HashedValue(string hash)
+        {
+            HashString = hash;
+        }
+
         /// <summary>
         ///     The hashed string representation
         /// </summary>
@@ -353,6 +358,11 @@ namespace PhiloSoftware.Core.Infrastructure.Security
             public IHashedValue CreateHash(string text, SupportedHashAlgorithm algorithm, int hashComplexity)
             {
                 return new HashedValue(text, algorithm, hashComplexity, _cryptoProvider);
+            }
+
+            public IHashedValue FromHash(string hashString)
+            {
+                return new HashedValue(hashString);
             }
         }
     }
