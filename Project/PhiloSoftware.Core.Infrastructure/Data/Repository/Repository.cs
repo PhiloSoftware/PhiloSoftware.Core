@@ -22,7 +22,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.Repository
 
         public T GetByIDOrDefault(Guid id)
         {
-            return _dataSource.SingleOrDefault(x => x.ID == id);
+            return _dataSource.SingleOrDefault(x => x.Id == id);
         }
 
         public T GetByID(Guid id)

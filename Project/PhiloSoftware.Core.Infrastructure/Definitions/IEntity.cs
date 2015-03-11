@@ -8,7 +8,7 @@ namespace PhiloSoftware.Core.Infrastructure.Definitions
 {
     public interface IEntity
     {
-        Guid ID { get; }
+        Guid Id { get; }
 
         DateTimeOffset CreatedDateUtc { get; }
 

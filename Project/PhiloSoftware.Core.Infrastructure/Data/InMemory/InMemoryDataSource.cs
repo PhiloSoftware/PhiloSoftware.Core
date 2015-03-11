@@ -29,7 +29,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.InMemory
 
         public void Add(T entity)
         {
-            _dataSource.Add(entity.ID, entity);
+            _dataSource.Add(entity.Id, entity);
         }
 
         public void Update(T entity)
@@ -39,7 +39,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.InMemory
 
         public void Delete(T entity)
         {
-            DeleteByID(entity.ID);
+            DeleteByID(entity.Id);
         }
 
         public void DeleteByID(Guid id)

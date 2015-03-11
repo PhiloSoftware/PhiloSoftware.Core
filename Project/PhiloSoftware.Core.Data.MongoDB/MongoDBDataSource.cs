@@ -22,13 +22,13 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 
         public T GetByID(Guid id)
         {
-            var query = Query<T>.EQ(t => t.ID, id);
+            var query = Query<T>.EQ(t => t.Id, id);
             return _collection.FindOne(query);
         }
 
         public void Add(T entity)
         {
-            if (entity.ID == Guid.Empty)
+            if (entity.Id == Guid.Empty)
                 throw IEntityIDNotSetException.ExceptionForInsertFail<T>();
 
             _collection.Insert(entity);
@@ -36,7 +36,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 
         public void Update(T entity)
         {
-            if (entity.ID == Guid.Empty)
+            if (entity.Id == Guid.Empty)
                 throw IEntityIDNotSetException.ExceptionForUpdateFail<T>();
 
             entity.UpdatedDateUtc = DateTimeOffset.UtcNow;
@@ -45,15 +45,15 @@ namespace PhiloSoftware.Core.Infrastructure.Data.MongoDB
 
         public void Delete(T entity)
         {
-            if (entity.ID == Guid.Empty)
+            if (entity.Id == Guid.Empty)
                 throw IEntityIDNotSetException.ExceptionForDeleteFail<T>();
 
-            DeleteByID(entity.ID);
+            DeleteByID(entity.Id);
         }
 
         public void DeleteByID(Guid id)
         {
-            var query = Query<T>.EQ(t => t.ID, id);
+            var query = Query<T>.EQ(t => t.Id, id);
             _collection.Remove(query);
         }
 

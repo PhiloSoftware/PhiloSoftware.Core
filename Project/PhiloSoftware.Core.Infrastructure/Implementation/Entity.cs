@@ -10,12 +10,12 @@ namespace PhiloSoftware.Core.Infrastructure.Implementation
 
         public Entity(IGenerateSequentialGuids sequentialGuidService)
         {
-            this.ID = sequentialGuidService.NewSequentialGuid();
+            this.Id = sequentialGuidService.NewSequentialGuid();
             this.CreatedDateUtc = DateTimeOffset.UtcNow;
             this.UpdatedDateUtc = DateTimeOffset.UtcNow;
         }
 
-        public virtual Guid ID { get; private set; }
+        public virtual Guid Id { get; private set; }
 
         public virtual DateTimeOffset CreatedDateUtc { get; private set; }
 
@@ -28,12 +28,12 @@ namespace PhiloSoftware.Core.Infrastructure.Implementation
                 return false;
 
             Entity p = (Entity)obj;
-            return (ID == p.ID);
+            return (Id == p.Id);
         }
 
         public override int GetHashCode()
         {
-            return ID.GetHashCode();
+            return Id.GetHashCode();
         }
     }
 }
