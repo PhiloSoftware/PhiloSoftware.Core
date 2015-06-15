@@ -56,8 +56,6 @@
     <Compile Include="Data\ISession.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
     <Compile Include="Data\Repository\Repository.cs" />
-    <Compile Include="Data\SQL\SqlDataSource.cs" />
-    <Compile Include="Data\SQL\SqlUnitOfWork.cs" />
     <Compile Include="Definitions\IAmAPerson.cs" />
     <Compile Include="Definitions\IHaveUsernameAndPassword.cs" />
     <Compile Include="Implementation\Entity.cs" />
