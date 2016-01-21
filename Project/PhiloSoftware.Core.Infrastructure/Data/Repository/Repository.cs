@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using PhiloSoftware.Core.Infrastructure.Implementation;
 
 namespace PhiloSoftware.Core.Infrastructure.Data.Repository
 {
@@ -22,7 +21,7 @@ namespace PhiloSoftware.Core.Infrastructure.Data.Repository
 
         public T GetByIDOrDefault(Guid id)
         {
-            return _dataSource.SingleOrDefault(x => x.Id == id);
+            return _dataSource.FirstOrDefault(x => x.Id == id);
         }
 
         public T GetByID(Guid id)
